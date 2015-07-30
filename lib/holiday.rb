@@ -54,16 +54,9 @@ def all_supplies_in_holidays(holiday_hash)
   end
 end
 
-# values = [
-# {:christmas=>["Lights", "Wreath"], :new_years=>["Party Hats"]},
-# {:fourth_of_july=>["Fireworks", "BBQ"]},
-# {:thanksgiving=>["Turkey"]},
-# {:memorial_day=>["BBQ"]}
-# ]
-
 def all_holidays_with_bbq(holiday_hash)
-  holiday_hash.values.reduce([]) do |bbq_holidays, seaason|
-    seaason.each_pair do |holiday, supplies|
+  holiday_hash.values.each_with_object([]) do |holidays, bbq_holidays|
+    holidays.each_pair do |holiday, supplies|
       bbq_holidays << holiday if supplies.include?('BBQ')
     end
 
